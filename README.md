@@ -41,61 +41,61 @@ patched. There are two possible behaviours when called on unknown string:
 * return nil
 * raise exception
 
-This gem provides implementation of both in SafeIntern::ExceptionPatch and
-SafeIntern::NilPatch modules. 
+This gem provides implementation of both in `SafeIntern::ExceptionPatch` and
+`SafeIntern::NilPatch` modules. 
 
 ## Usage
 
 1. Install using gem command:
       
-    $ gem install safe_intern
+        $ gem install safe_intern
 
   or include in Gemfile:
 
-    gem 'safe_intern'
+        gem 'safe_intern'
 
 2. Patch the String:
 
-    require 'safe_intern/string'
+        require 'safe_intern/string'
 
   This will patch String#intern and String#to_sym methods to throw exception 
   when new Symbol would be allocated. To return nil instead, patch the String 
   with
 
-    require 'safe_intern'
+      require 'safe_intern'
 
-    class ::String
-      prepend SafeIntern::NilPatch
-    end
+      class ::String
+        prepend SafeIntern::NilPatch
+      end
 
   Prepending the SafeIntern::NilPatch module is important, since including it
   would result in the wrong order of method lookup.
 
   Only particular strings can be patched too:
 
-    require 'safe_intern'
+      require 'safe_intern'
     
     unstrusted_string.extend(SafeIntern::ExceptionPatch)
 
   Calling `.to_sym` and `.intern` on unstrusted string that would result in
   new symbol allocation returns nil or throws exception:
 
-    > untrusted_string.extend(SafeIntern::NilPatch)
-    => "does_not_exist"
-    > untrusted_string.intern
-    => nil 
-    > untrusted_string.extend(SafeIntern::ExceptionPatch)
-    => "does_not_exist" 
-    > untrusted_string.intern
-    UnsafeInternException: UnsafeInternException
-      from /home/jrusnack/.rvm/gems/ruby-2.0.0-p353@safe_intern/gems/safe_intern-1.0.0/lib/safe_intern/exception_patch.rb:7:in `intern'
-      from (irb):6
-      from /home/jrusnack/.rvm/rubies/ruby-2.0.0-p353/bin/irb:12:in `<main>'
+      > untrusted_string.extend(SafeIntern::NilPatch)
+      => "does_not_exist"
+      > untrusted_string.intern
+      => nil 
+      > untrusted_string.extend(SafeIntern::ExceptionPatch)
+      => "does_not_exist" 
+      > untrusted_string.intern
+      UnsafeInternException: UnsafeInternException
+        from /home/jrusnack/.rvm/gems/ruby-2.0.0-p353@safe_intern/gems/safe_intern-1.0.0/lib/safe_intern/exception_patch.rb:7:in `intern'
+        from (irb):6
+        from /home/jrusnack/.rvm/rubies/ruby-2.0.0-p353/bin/irb:12:in `<main>'
 
   When String class is patched, creating new symbol from trusted string is
   possible with
 
-    trusted_string.intern(:allow_unsafe)
+      trusted_string.intern(:allow_unsafe)
 
 ## Requirements
 * [Ruby] >= 2.0.0
