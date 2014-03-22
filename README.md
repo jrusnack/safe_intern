@@ -1,6 +1,6 @@
 # SafeIntern
 
-Safe implemetation of String#intern and String#to_sym methods.
+Safe implemetation of `String#intern` and `String#to_sym` methods.
 
 ## Description
 
@@ -113,4 +113,4 @@ of new method to query for already allocated Symbols in [Issue 7854].
 [Ruby]: http://www.ruby-lang.org
 [Symbol Lookup]: https://github.com/phluid61/symbol_lookup-gem
 [Issue 7854]: https://bugs.ruby-lang.org/issues/7854
-[SafeIntern] https://github.com/jrusnack/safe_intern
+[SafeIntern]: https://github.com/jrusnack/safe_intern
