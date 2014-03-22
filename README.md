@@ -1,9 +1,11 @@
 # SafeIntern
 
+Safe implemetation of String#intern and String#to_sym methods.
+
 ## Description
 
-One of the common security issues of Ruby applications is calling .intern or 
-.to_sym on strings from untrusted source. Since symbols are not garbage 
+One of the common security issues of Ruby applications is calling `intern` or 
+`to_sym` on strings from untrusted source. Since symbols are not garbage 
 collected in Ruby, yet take up some memory, this allows attacker to mount 
 Denial of Service attack. Just by feeding the application with large number of
 strings and creating large number of symbols, memory consumption of the Ruby
@@ -35,8 +37,8 @@ much more efficient than doing something like
 
     Symbol.all_symbols.map(&:to_s).include?(untrusted_string)
 
-With the ability to query for known symbols, .intern and .to_sym methods can be
-patched. There are two possible behaviours when called on unknown string:
+With the ability to query for known symbols, `intern` and `to_sym` methods can 
+be patched. There are two possible behaviours when called on unknown string:
 
 * return nil
 * raise exception
@@ -58,9 +60,9 @@ This gem provides implementation of both in `SafeIntern::ExceptionPatch` and
 
         require 'safe_intern/string'
 
-  This will patch String#intern and String#to_sym methods to throw exception 
-  when new Symbol would be allocated. To return nil instead, patch the String 
-  with
+  This will patch `String#intern` and `String#to_sym` methods to throw 
+  exception when new Symbol would be allocated. To return nil instead, patch 
+  the String with
 
       require 'safe_intern'
 
@@ -68,14 +70,14 @@ This gem provides implementation of both in `SafeIntern::ExceptionPatch` and
         prepend SafeIntern::NilPatch
       end
 
-  Prepending the SafeIntern::NilPatch module is important, since including it
+  Prepending the `SafeIntern::NilPatch` module is important, since including it
   would result in the wrong order of method lookup.
 
   Only particular strings can be patched too:
 
       require 'safe_intern'
     
-    unstrusted_string.extend(SafeIntern::ExceptionPatch)
+      unstrusted_string.extend(SafeIntern::ExceptionPatch)
 
   Calling `.to_sym` and `.intern` on unstrusted string that would result in
   new symbol allocation returns nil or throws exception:
@@ -88,9 +90,9 @@ This gem provides implementation of both in `SafeIntern::ExceptionPatch` and
       => "does_not_exist" 
       > untrusted_string.intern
       UnsafeInternException: UnsafeInternException
-        from /home/jrusnack/.rvm/gems/ruby-2.0.0-p353@safe_intern/gems/safe_intern-1.0.0/lib/safe_intern/exception_patch.rb:7:in `intern'
-        from (irb):6
-        from /home/jrusnack/.rvm/rubies/ruby-2.0.0-p353/bin/irb:12:in `<main>'
+        from /home/jrusnack/.gem/ruby/gems/safe_intern-1.0.0/lib/safe_intern/exception_patch.rb:7:in `intern'
+        from (irb):4
+        from /usr/bin/irb:12:in `<main>'
 
   When String class is patched, creating new symbol from trusted string is
   possible with
@@ -106,8 +108,9 @@ Similar functionality is provided by [Symbol Lookup] gem. Read about addition
 of new method to query for already allocated Symbols in [Issue 7854].
 
 ## License
-SafeIntern is released under the MIT License.
+[SafeIntern] is released under the MIT License.
 
 [Ruby]: http://www.ruby-lang.org
 [Symbol Lookup]: https://github.com/phluid61/symbol_lookup-gem
 [Issue 7854]: https://bugs.ruby-lang.org/issues/7854
+[SafeIntern] https://github.com/jrusnack/safe_intern
