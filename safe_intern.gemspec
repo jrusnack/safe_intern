@@ -1,4 +1,4 @@
-Gem::specification.new do |gem|
+Gem::Specification.new do |gem|
   gem.name        = 'safe_intern'
   gem.version     = '1.0.0'
   gem.date        = '2014-03-20'
