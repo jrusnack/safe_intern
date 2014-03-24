@@ -1,4 +1,5 @@
 [![Gem Version](https://badge.fury.io/rb/safe_intern.png)](http://badge.fury.io/rb/safe_intern)
+[![Build Status](https://travis-ci.org/jrusnack/safe_intern.svg?branch=master)](https://travis-ci.org/jrusnack/safe_intern)
 [![Code Climate](https://codeclimate.com/github/jrusnack/safe_intern.png)](https://codeclimate.com/github/jrusnack/safe_intern)
 
 # SafeIntern
