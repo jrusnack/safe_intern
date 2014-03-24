@@ -1,3 +1,6 @@
+[![Gem Version](https://badge.fury.io/rb/safe_intern.png)](http://badge.fury.io/rb/safe_intern)
+[![Code Climate](https://codeclimate.com/github/jrusnack/safe_intern.png)](https://codeclimate.com/github/jrusnack/safe_intern)
+
 # SafeIntern
 
 Safe implemetation of `String#intern` and `String#to_sym` methods.
