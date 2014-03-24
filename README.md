@@ -107,6 +107,8 @@ This gem provides implementation of both in `SafeIntern::ExceptionPatch` and
 Similar functionality is provided by [Symbol Lookup] gem. Read about addition 
 of new method to query for already allocated Symbols in [Issue 7854].
 
+Kudos to [Martin Povolny] for the initial idea.
+
 ## License
 [SafeIntern] is released under the MIT License.
 
@@ -114,3 +116,4 @@ of new method to query for already allocated Symbols in [Issue 7854].
 [Symbol Lookup]: https://github.com/phluid61/symbol_lookup-gem
 [Issue 7854]: https://bugs.ruby-lang.org/issues/7854
 [SafeIntern]: https://github.com/jrusnack/safe_intern
+[Martin Povolny]: https://github.com/martinpovolny
