@@ -4,6 +4,8 @@ require 'rubocop/rake_task'
 require 'benchmark'
 $:.unshift File.expand_path('../lib', __FILE__)
 
+task :default => :spec
+
 # :compile task
 Rake::ExtensionTask.new "symbol_defined"
 
@@ -15,7 +17,7 @@ task :spec => :compile
 Rubocop::RakeTask.new
 
 desc 'Benchmark implemented methods'
-task :benchmark do
+task :benchmark => :compile do
   require 'safe_intern'
   i = 2000000
 

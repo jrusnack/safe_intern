@@ -1,4 +1,3 @@
-before_script:  rake compile
 script:         rake spec
 
 rvm:
