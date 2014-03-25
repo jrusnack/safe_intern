@@ -11,4 +11,5 @@ Gem::Specification.new do |gem|
   gem.required_ruby_version = ['>= 2.0']
   gem.homepage    = 'https://github.com/jrusnack/safe_intern'
   gem.license     = 'MIT'
+  gem.cert_chain  = ['certs/gem-jrusnack.pem']
 end
