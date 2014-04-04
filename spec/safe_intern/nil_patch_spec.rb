@@ -8,10 +8,12 @@ require 'spec_helper'
 
 describe SafeIntern::NilPatch do
   context '#intern' do
-    it_behaves_like 'safe-intern', SafeIntern::NilPatch, :intern
+    rnd = rand(100_000).to_s.extend(SafeIntern::NilPatch)
+    it_behaves_like 'safe-intern', SafeIntern::NilPatch, :intern, rnd
   end
 
   context '#to_sym' do
-    it_behaves_like 'safe-intern', SafeIntern::NilPatch, :to_sym
+    rnd = rand(100_000).to_s.extend(SafeIntern::NilPatch)
+    it_behaves_like 'safe-intern', SafeIntern::NilPatch, :to_sym, rnd
   end
 end

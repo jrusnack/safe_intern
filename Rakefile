@@ -13,6 +13,11 @@ Rake::ExtensionTask.new "symbol_defined"
 RSpec::Core::RakeTask.new
 task :spec => :compile
 
+desc 'Test patched String provided by SafeIntern'
+task :test_string => :compile do
+  system 'rspec spec/safe_intern/string_spec_man.rb'
+end
+
 # :rubocop task
 Rubocop::RakeTask.new
 

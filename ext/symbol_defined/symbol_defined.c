@@ -61,8 +61,4 @@ void Init_symbol_defined()
 {
     cSafeIntern = rb_define_module("SafeIntern");
     rb_define_module_function(cSafeIntern, "symbol_defined?", symbol_defined, 1);
-
-#ifndef RUBY2
-    st_init_table_with_size(&cached_symbols, 1000);
-#endif
 }

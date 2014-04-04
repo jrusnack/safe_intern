@@ -4,7 +4,9 @@
 # modify, copy, or redistribute it subject to the terms and conditions of the
 # MIT license.
 
-shared_examples 'safe-intern' do |patch, method|
+# takes patch and method to test. nxstr is string that would result in new
+# symbol defined when intern is called on it
+shared_examples 'safe-intern' do |patch, method, nxstr|
   it 'should convert to Symbol if it already exists' do
     'Object'.extend(patch).send(method).should be_eql(:Object)
   end
@@ -12,18 +14,18 @@ shared_examples 'safe-intern' do |patch, method|
   it 'should not create new Symbol if it does not already exist' do
     case patch.name
     when 'SafeIntern::NilPatch'
-      'DoesNotExist'.extend(patch).send(method).should be_nil
+      nxstr.send(method).should be_nil
     when 'SafeIntern::ExceptionPatch'
-      expect { 'DoesNotExist'.extend(patch).send(method) }.to raise_error
+      expect { nxstr.send(method) }.to raise_error
     else
       fail
     end
-    Symbol.all_symbols.map(&:to_s).should_not include('DoesNotExist')
+    Symbol.all_symbols.map(&:to_s).should_not include(nxstr)
   end
 
   it 'should accept :allow_unsafe as optional parameter' do
-    rnd = rand(100_000).to_s
-    Symbol.all_symbols.map(&:to_s).should_not include(rnd)
-    rnd.extend(patch).send(method, :allow_unsafe).should be_eql(rnd.to_sym)
+    Symbol.all_symbols.map(&:to_s).should_not include(nxstr)
+    nxstr.intern(:allow_unsafe)
+    Symbol.all_symbols.map(&:to_s).should include(nxstr)
   end
 end

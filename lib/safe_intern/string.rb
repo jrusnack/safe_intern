@@ -12,5 +12,27 @@ require 'safe_intern'
 # Usage: require 'safe_intern/string'
 #
 class ::String
-  prepend SafeIntern::ExceptionPatch
+  # cannot do simple
+  #    prepend SafeIntern::ExceptionPatch
+  #
+  # due to compatibility with 1.9.3
+
+  old_intern = instance_method(:intern)
+  old_to_sym = instance_method(:to_sym)
+
+  define_method(:intern) do |allow_unsafe = nil|
+    if allow_unsafe == :allow_unsafe || SafeIntern.symbol_defined?(self)
+      old_intern.bind(self).call
+    else
+      fail UnsafeInternException
+    end
+  end
+
+  define_method(:to_sym) do |allow_unsafe = nil|
+    if allow_unsafe == :allow_unsafe || SafeIntern.symbol_defined?(self)
+      old_to_sym.bind(self).call
+    else
+      fail UnsafeInternException
+    end
+  end
 end

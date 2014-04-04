@@ -8,10 +8,12 @@ require 'spec_helper'
 
 describe SafeIntern::ExceptionPatch do
   context 'intern' do
-    it_behaves_like 'safe-intern', SafeIntern::ExceptionPatch, :intern
+    rnd = rand(100_000).to_s.extend(SafeIntern::ExceptionPatch)
+    it_behaves_like 'safe-intern', SafeIntern::ExceptionPatch, :intern, rnd
   end
 
   context 'to_sym' do
-    it_behaves_like 'safe-intern', SafeIntern::ExceptionPatch, :to_sym
+    rnd = rand(100_000).to_s.extend(SafeIntern::ExceptionPatch)
+    it_behaves_like 'safe-intern', SafeIntern::ExceptionPatch, :to_sym, rnd
   end
 end

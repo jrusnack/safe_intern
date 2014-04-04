@@ -1,4 +1,4 @@
-script:         rake spec
+script:  "rake spec && rake test_string"
 
 rvm:
   - 1.9.3
