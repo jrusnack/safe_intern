@@ -1,6 +1,6 @@
 Gem::Specification.new do |gem|
   gem.name        = 'safe_intern'
-  gem.version     = '1.0.1'
+  gem.version     = '1.1.0'
   gem.date        = '2014-03-25'
   gem.summary     = 'Safe String#intern'
   gem.description = 'Safe implementation of String#intern'
