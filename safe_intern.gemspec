@@ -8,7 +8,7 @@ Gem::Specification.new do |gem|
   gem.email       = 'rusnackoj@gmail.com'
   gem.files       = `git ls-files`.split($/)
   gem.extensions  = 'ext/symbol_defined/extconf.rb'
-  gem.required_ruby_version = ['>= 2.0']
+  gem.required_ruby_version = ['>= 1.9.3']
   gem.homepage    = 'https://github.com/jrusnack/safe_intern'
   gem.license     = 'MIT'
   gem.cert_chain  = ['certs/gem-jrusnack.pem']

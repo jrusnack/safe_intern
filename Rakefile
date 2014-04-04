@@ -19,7 +19,7 @@ Rubocop::RakeTask.new
 desc 'Benchmark implemented methods'
 task :benchmark => :compile do
   require 'safe_intern'
-  i = 2000000
+  i = 20000
 
   Benchmark.bm(22) do |bm|
     string = 'String'

@@ -5,4 +5,6 @@
 # MIT license.
 
 require 'mkmf'
+# enable faster symbol lookup for Ruby 2
+$CFLAGS += ' -DRUBY2' if RUBY_VERSION.start_with?('2')
 create_makefile('symbol_defined')
