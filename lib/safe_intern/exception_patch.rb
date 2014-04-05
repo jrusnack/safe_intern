@@ -6,19 +6,13 @@
 
 module SafeIntern
   module ExceptionPatch
-    def intern(allow_unsafe = nil)
-      if allow_unsafe == :allow_unsafe || SafeIntern.symbol_defined?(self)
-        super()
-      else
-        fail UnsafeInternException
-      end
-    end
-
-    def to_sym(allow_unsafe = nil)
-      if allow_unsafe == :allow_unsafe || SafeIntern.symbol_defined?(self)
-        super()
-      else
-        fail UnsafeInternException
+    %w(intern to_sym).each do |method|
+      define_method(method) do |allow_unsafe = nil|
+        if allow_unsafe == :allow_unsafe || SafeIntern.symbol_defined?(self)
+          super()
+        else
+          fail UnsafeInternException
+        end
       end
     end
   end

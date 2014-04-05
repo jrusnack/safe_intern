@@ -1,7 +1,7 @@
 Gem::Specification.new do |gem|
   gem.name        = 'safe_intern'
   gem.version     = '1.1.0'
-  gem.date        = '2014-03-25'
+  gem.date        = Date.today.to_s
   gem.summary     = 'Safe String#intern'
   gem.description = 'Safe implementation of String#intern'
   gem.authors     = ["Jan Rusnacko"]

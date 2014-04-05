@@ -6,19 +6,13 @@
 
 module SafeIntern
   module NilPatch
-    def intern(allow_unsafe = nil)
-      if allow_unsafe == :allow_unsafe || SafeIntern.symbol_defined?(self)
-        super()
-      else
-        nil
-      end
-    end
-
-    def to_sym(allow_unsafe = nil)
-      if allow_unsafe == :allow_unsafe || SafeIntern.symbol_defined?(self)
-        super()
-      else
-        nil
+    %w(intern to_sym).each do |method|
+      define_method(method) do |allow_unsafe = nil|
+        if allow_unsafe == :allow_unsafe || SafeIntern.symbol_defined?(self)
+          super()
+        else
+          nil
+        end
       end
     end
   end
