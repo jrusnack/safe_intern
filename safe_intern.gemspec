@@ -12,8 +12,8 @@ Gem::Specification.new do |gem|
   gem.homepage    = 'https://github.com/jrusnack/safe_intern'
   gem.license     = 'MIT'
   gem.cert_chain  = ['certs/gem-jrusnack.pem']
-  gem.add_development_dependency 'rake'
-  gem.add_development_dependency 'rake-compiler'
-  gem.add_development_dependency 'rspec'
-  gem.add_development_dependency 'rubocop'
+  gem.add_development_dependency 'rake', '>= 10.0.0'
+  gem.add_development_dependency 'rake-compiler', '>= 0.9'
+  gem.add_development_dependency 'rspec', '>= 2.14'
+  gem.add_development_dependency 'rubocop', '>= 0'
 end
