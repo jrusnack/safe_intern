@@ -41,6 +41,10 @@ much more efficient than doing something like
 
     Symbol.all_symbols.map(&:to_s).include?(untrusted_string)
 
+This gem is also compatible with Ruby 1.9.3, where it falls back to enumerating
+all Symbols and caching the results. It is slightly more efficient than Ruby
+implementation, but still much slower than the implementation for Ruby 2.0.
+
 With the ability to query for known symbols, `intern` and `to_sym` methods can 
 be patched. There are two possible behaviours when called on unknown string:
 
@@ -104,7 +108,7 @@ This gem provides implementation of both in `SafeIntern::ExceptionPatch` and
       trusted_string.intern(:allow_unsafe)
 
 ## Requirements
-* [Ruby] >= 2.0.0
+* [Ruby] >= 1.9.3
 
 ## See also
 
